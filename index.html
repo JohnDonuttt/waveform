@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>waveform</title>
+  <meta name="description" content="A Web Audio visualiser with a log-spaced spectrum, a triggered oscilloscope and a radial view.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#14130f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f2ede1" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <h1 class="wordmark">waveform</h1>
+      <p class="tagline">A small instrument for looking at sound, built on the Web Audio API.</p>
+    </header>
+
+    <main>
+      <section class="panel" aria-labelledby="view-heading">
+        <h2 id="view-heading" class="visually-hidden">Visualiser</h2>
+        <div class="readout">
+          <span id="readout-mode">Spectrum</span>
+          <span id="readout-value" class="readout-value">No input</span>
+        </div>
+        <div class="stage">
+          <canvas id="view" role="img" aria-label="Spectrum: 64 log-spaced frequency bands from 20 Hz to Nyquist."></canvas>
+          <div id="idle" class="idle">
+            <p>Pick a sound source to start. The demo chord plays straight away.</p>
+            <button id="idle-demo" type="button" class="primary">Play the demo chord</button>
+          </div>
+        </div>
+        <audio id="player" controls hidden></audio>
+      </section>
+
+      <section class="controls" aria-label="Controls">
+        <div class="group" role="group" aria-labelledby="source-label">
+          <span id="source-label" class="group-label">Source</span>
+          <div class="buttons">
+            <button type="button" data-source="demo" aria-pressed="false">Demo chord</button>
+            <button type="button" data-source="mic" aria-pressed="false">Microphone</button>
+            <label id="file-label" class="file-button">
+              <input id="file" type="file" accept="audio/*" class="visually-hidden">
+              <span>Audio file</span>
+            </label>
+            <button id="stop" type="button" class="quiet" disabled>Stop</button>
+          </div>
+          <p class="hint"><span id="file-name"></span></p>
+        </div>
+
+        <div class="group" role="group" aria-labelledby="mode-label">
+          <span id="mode-label" class="group-label">View</span>
+          <div class="buttons">
+            <button type="button" data-mode="spectrum" aria-pressed="true" aria-keyshortcuts="1">Spectrum <kbd>1</kbd></button>
+            <button type="button" data-mode="scope" aria-pressed="false" aria-keyshortcuts="2">Oscilloscope <kbd>2</kbd></button>
+            <button type="button" data-mode="radial" aria-pressed="false" aria-keyshortcuts="3">Radial <kbd>3</kbd></button>
+          </div>
+        </div>
+      </section>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </main>
+
+    <footer class="footer">
+      <p>Audio stays in your browser. Nothing is recorded or uploaded.</p>
+      <p><a href="https://github.com/JohnDonuttt/waveform">Source on GitHub</a></p>
+    </footer>
+  </div>
+</body>
+</html>
