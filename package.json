@@ -1,0 +1,16 @@
+{
+  "name": "waveform",
+  "version": "1.0.0",
+  "description": "Web Audio visualiser: log-spaced FFT spectrum, triggered oscilloscope and radial modes",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "build": "node scripts/build.js",
+    "start": "node scripts/serve.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
